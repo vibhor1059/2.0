@@ -364,7 +364,26 @@ if __name__ == "__main__":
 
                     elif shutdown == "no":
                         break
+             
 
+                     from langdetect import detect
+
+def detect_language(text):
+    try:
+        return detect(text)
+    except:
+        return "en"  # default to English
+
+def get_ai_response(user_input, language_code):
+    prompt = f"Reply in this language ({language_code}): {user_input}"
+    # Send prompt to your AI model (e.g., OpenAI API) and get response
+    ai_response = call_your_ai_model(prompt)
+    return ai_response
+
+# Example usage
+user_input = "Hola, ¿cómo estás?"  # This could come from speech-to-text
+lang_code = detect_language(user_input)
+ai_reply = get_ai_response(user_input, lang_code)
                 
 
 
